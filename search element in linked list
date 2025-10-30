@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+struct Node {
+    int data;
+    Node* next;
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+bool search_element(Node* head, int key) {
+    Node* temp = head;
+    bool found = false;
+    while(temp != NULL) {
+        if(temp->data == key) {
+            found = true;
+            break;
+        }
+        temp = temp->next;
+    }
+    return found;
+}
+int main() {
+    int n;
+    cin>>n;
+    int val,i;
+    int key;
+    cout<<"Enter the value of key : ";
+    cin>>key;
+     Node* head = NULL;
+        Node* tail = NULL;
+    for(i=0;i<n;i++) {
+        cin>>val;
+        Node* newNode = new Node(val);
+        if(head == NULL) {
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+    int result = search_element(head,key);
+    cout<<result<<endl;
+    return 0;
+}
